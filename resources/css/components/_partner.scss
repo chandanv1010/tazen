@@ -1,0 +1,92 @@
+// ==========================================
+// TAZEN PARTNER LOGOS (KHÁCH HÀNG CỦA CHÚNG TÔI)
+// ==========================================
+
+.panel-partner {
+    padding: 60px 0;
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
+
+    .partner-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        gap: 50px;
+
+        @media (max-width: 767px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .partner-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 30px;
+            font-weight: 850;
+            color: #000;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            flex-shrink: 0;
+
+            @media (max-width: 959px) {
+                font-size: 26px;
+            }
+
+            @media (max-width: 767px) {
+                font-size: 22px;
+            }
+        }
+
+        .partner-description {
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            max-width: 550px;
+            margin: 0;
+            text-align: left;
+
+            @media (max-width: 767px) {
+                font-size: 13px;
+            }
+        }
+    }
+
+    .partner-swiper {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .partner-slide-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .partner-logo-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 100%;
+        opacity: 0.7;
+        filter: grayscale(100%);
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+
+        &:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+    }
+}

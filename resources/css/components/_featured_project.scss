@@ -1,0 +1,162 @@
+// ==========================================
+// TAZEN FEATURED PROJECTS (DỰ ÁN TIÊU BIỂU)
+// ==========================================
+
+.panel-featured-projects {
+    padding: 0 0 80px 0;
+    background-color: #fff;
+    overflow: visible;
+
+    .project-header {
+        text-align: center;
+        margin-bottom: 50px;
+
+        .tag {
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #f37a20;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            text-transform: capitalize;
+
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 25px;
+                height: 2px;
+                background-color: #f37a20;
+            }
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 38px;
+            font-weight: 850;
+            color: #000;
+            margin: 0;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+
+            @media (max-width: 767px) {
+                font-size: 28px;
+            }
+        }
+    }
+
+    .project-swiper {
+        width: 100%;
+        padding: 15px 0;
+        overflow: hidden;
+    }
+
+    .project-slide-item {
+        height: auto;
+    }
+
+    .project-card {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        box-shadow: none;
+        border-radius: 0;
+        overflow: hidden;
+        text-decoration: none;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+        height: 100%;
+        border: none;
+        position: relative;
+
+        &:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            z-index: 10;
+
+            .card-image img {
+                transform: scale(1.05);
+            }
+        }
+
+        .card-image {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f9f9f9;
+
+            @media (max-width: 767px) {
+                height: 200px;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.4s ease;
+            }
+        }
+
+        .card-body {
+            padding: 24px 0;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            .project-info-list {
+                border-left: 2px solid #f37a20; // thin orange left line
+                padding-left: 20px;
+                padding-right: 20px;
+                margin-bottom: 22px;
+                flex: 1;
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        font-family: 'Manrope', sans-serif;
+                        font-size: 13.5px;
+                        color: #555;
+                        line-height: 1.6;
+                        margin-bottom: 8px;
+                        text-align: left;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        strong {
+                            color: #222;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+
+            .btn-xem-them {
+                font-family: 'Manrope', sans-serif;
+                font-size: 13px;
+                font-weight: 700;
+                color: #1e4794; // corporate blue
+                text-transform: uppercase;
+                transition: color 0.2s;
+                text-align: left;
+                margin-top: auto;
+                display: inline-block;
+                padding-left: 20px;
+                padding-right: 20px;
+
+                &:hover {
+                    color: #f37a20;
+                }
+            }
+        }
+    }
+}
+
+.panel-intro {
+    padding-bottom: 0 !important;
+}
