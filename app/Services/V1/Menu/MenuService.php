@@ -62,14 +62,25 @@ class MenuService extends BaseService
                     if($menuId == 0){
                         $menuSave = $this->menuRepository->create($menuArray); 
                     }else{
-                        $menuSave = $this->menuRepository->update($menuId, $menuArray);
-                        if($menuSave->rgt - $menuSave->lft > 1){
-                            $this->menuRepository->updateByWhere(
-                                [
-                                    ['lft', '>', $menuSave->lft],
-                                    ['rgt', '<', $menuSave->rgt],
-                                ], ['menu_catalogue_id' => $payload['menu_catalogue_id']]
-                            );
+                        $menu = \App\Models\Menu::find($menuId);
+                        if($menu){
+                            $menuSave = $this->menuRepository->update($menuId, $menuArray);
+                            if($menuSave->rgt - $menuSave->lft > 1){
+                                $this->menuRepository->updateByWhere(
+                                    [
+                                        ['lft', '>', $menuSave->lft],
+                                        ['rgt', '<', $menuSave->rgt],
+                                    ], ['menu_catalogue_id' => $payload['menu_catalogue_id']]
+                                );
+                            }
+                        } else {
+                            $menuTrashed = \App\Models\Menu::onlyTrashed()->find($menuId);
+                            if($menuTrashed){
+                                $menuTrashed->restore();
+                                $menuSave = $this->menuRepository->update($menuId, $menuArray);
+                            } else {
+                                $menuSave = $this->menuRepository->create($menuArray);
+                            }
                         }
                     }
                     if($menuSave->id > 0){
@@ -113,7 +124,18 @@ class MenuService extends BaseService
                     if($menuId == 0){
                         $menuSave = $this->menuRepository->create($menuArray); 
                     }else{
-                        $menuSave = $this->menuRepository->update($menuId, $menuArray);
+                        $menu = \App\Models\Menu::find($menuId);
+                        if($menu){
+                            $menuSave = $this->menuRepository->update($menuId, $menuArray);
+                        }else{
+                            $menuTrashed = \App\Models\Menu::onlyTrashed()->find($menuId);
+                            if($menuTrashed){
+                                $menuTrashed->restore();
+                                $menuSave = $this->menuRepository->update($menuId, $menuArray);
+                            }else{
+                                $menuSave = $this->menuRepository->create($menuArray);
+                            }
+                        }
                     }
                     if($menuSave->id > 0){
                         $menuSave->languages()->detach([$languageId, $menuSave->id]);
@@ -287,7 +309,17 @@ class MenuService extends BaseService
                         'name' => $val,
                         'canonical' => $payload['translate']['canonical'][$key],
                     ];
-                    $menu = $this->menuRepository->findById($payload['translate']['id'][$key]);
+                    $menuId = $payload['translate']['id'][$key];
+                    $menu = \App\Models\Menu::find($menuId);
+                    if(!$menu){
+                        $menuTrashed = \App\Models\Menu::onlyTrashed()->find($menuId);
+                        if($menuTrashed){
+                            $menuTrashed->restore();
+                            $menu = $menuTrashed;
+                        } else {
+                            continue;
+                        }
+                    }
                     $menu->languages()->detach([$languageId, $payload['translate']['id'][$key]]);
                     $this->menuRepository->createPivot($menu, $temp, 'languages');
                 }
