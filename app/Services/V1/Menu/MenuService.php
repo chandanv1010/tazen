@@ -211,7 +211,8 @@ class MenuService extends BaseService
             foreach($menuList as $key => $val){
                 foreach($fields as $field){
                     if($field == 'name' || $field == 'canonical'){
-                        $temp[$field][] = $val->languages->first()->pivot->{$field};
+                        $firstLang = $val->languages->first();
+                        $temp[$field][] = ($firstLang && $firstLang->pivot) ? $firstLang->pivot->{$field} : '';
                     }else{
                         $temp[$field][] = $val->{$field};
                     }
@@ -225,7 +226,8 @@ class MenuService extends BaseService
         $output = [];
         if(count($menus)){
             foreach($menus as $key =>  $menu){
-                $canonical = $menu->languages->first()->pivot->canonical;
+                $firstLang = $menu->languages->first();
+                $canonical = ($firstLang && $firstLang->pivot) ? $firstLang->pivot->canonical : '';
                 $detailMenu = $this->menuRepository->findById($menu->id, ['*'], [
                     'languages' => function($query) use ($languageId) {
                         $query->where('language_id',  $languageId);
@@ -233,8 +235,9 @@ class MenuService extends BaseService
                 ]);
                 if($detailMenu){
                     if($detailMenu->languages->isNotEmpty()){
-                        $menu->translate_name = $detailMenu->languages->first()->pivot->name;
-                        $menu->translate_canonical = $detailMenu->languages->first()->pivot->canonical;
+                        $firstDetailLang = $detailMenu->languages->first();
+                        $menu->translate_name = ($firstDetailLang && $firstDetailLang->pivot) ? $firstDetailLang->pivot->name : '';
+                        $menu->translate_canonical = ($firstDetailLang && $firstDetailLang->pivot) ? $firstDetailLang->pivot->canonical : '';
                     }else{
                         $router = $this->routerRepository->findByCondition([
                             ['canonical', '=', $canonical ]
