@@ -86,6 +86,10 @@
     }
 
     HT.filterOptionInput = (clickedElement) => {
+        let checkedCatalogues = $('.filterAttribute[data-group="catalogue"]:checked').map(function(){
+            return $(this).val();
+        }).get();
+
         var filterOption = {
             perpage: $('select[name=perpage]').val(),
             sort: $('select[name=sort]').val(),
@@ -94,14 +98,17 @@
             }).get(),
             price: HT.getPriceRange(),
             sortType : clickedElement.data('sort'),
-            productCatalogueId: $('input[name="product_catalogue_id[]"]:checked').val(),
+            productCatalogueId: checkedCatalogues.length > 0 ? checkedCatalogues : [$('.product_catalogue_id').val()],
             attributes:  {}
         }
-
 
         $('.filterAttribute:checked').each(function(){
             let attributeId = $(this).val()
             let attributeGroup  = $(this).attr('data-group')
+
+            if (attributeGroup === 'catalogue') {
+                return; // Skip category checkboxes, handled in productCatalogueId
+            }
 
             if (!filterOption.attributes.hasOwnProperty(attributeGroup)) {
                 filterOption.attributes[attributeGroup] = [];
@@ -115,14 +122,13 @@
 
     HT.sendDataToFilter = () => {
         let option = HT.filterOption()
-
         $.ajax({
             url: 'ajax/product/filter', 
             type: 'GET', 
             data: option, 
             dataType: 'json', 
             beforeSend: function() {
-                
+                $('.product-list').html('<div class="uk-text-center uk-margin-large-top uk-margin-large-bottom"><i class="fa fa-spinner fa-spin fa-2x" style="color: #f37a20;"></i><p class="uk-margin-small-top" style="color: #666; font-weight: 500;">Đang lọc sản phẩm...</p></div>');
             },
             success: function(res) {
                 let html = res.data
@@ -135,6 +141,10 @@
     }
 
     HT.filterOption = () => {
+        let checkedCatalogues = $('.filterAttribute[data-group="catalogue"]:checked').map(function(){
+            return $(this).val();
+        }).get();
+
         var filterOption = {
             perpage: $('select[name=perpage]').val(),
             sort: $('select[name=sort]').val(),
@@ -143,13 +153,17 @@
             }).get(),
             price: HT.getPriceRange(),
             sortType : $(this).data('sort'),
-            productCatalogueId: $('.product_catalogue_id').val(),
+            productCatalogueId: checkedCatalogues.length > 0 ? checkedCatalogues : [$('.product_catalogue_id').val()],
             attributes:  {}
         }
 
         $('.filterAttribute:checked').each(function(){
             let attributeId = $(this).val()
             let attributeGroup  = $(this).attr('data-group')
+
+            if (attributeGroup === 'catalogue') {
+                return; // Skip category checkboxes
+            }
 
             if (!filterOption.attributes.hasOwnProperty(attributeGroup)) {
                 filterOption.attributes[attributeGroup] = [];

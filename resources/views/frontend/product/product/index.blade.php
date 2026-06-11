@@ -171,9 +171,13 @@
                                         <div class="prd-btn btn-contact-full">
                                             <a href="tel:{{ $system['contact_hotline'] ?? '' }}"
                                                 title="{{ $system['contact_hotline'] ?? '' }}">
-                                                <i class="fa fa-phone"></i>
-                                                <span class="title">Liên Hệ Để Có Giá Tốt Nhất</span>
-                                                <span class="sub-title">{{ $system['contact_hotline'] ?? '' }}</span>
+                                                <div class="phone-icon-circle">
+                                                    <i class="fa fa-phone"></i>
+                                                </div>
+                                                <div class="btn-contact-text">
+                                                    <span class="title">Liên Hệ Để Có Giá Tốt Nhất</span>
+                                                    <span class="sub-title">Hotline: {{ $system['contact_hotline'] ?? '' }}</span>
+                                                </div>
                                             </a>
                                         </div>
 
@@ -444,6 +448,10 @@
         margin-left: 10px;
     }
 
+    .product-info .price-sale {
+        color: #f27a24 !important;
+    }
+
     /* Product info box */
     .prd-info-box {
         background: #f8f9fa;
@@ -486,7 +494,7 @@
         color: #27ae60;
     }
 
-    /* Contact full-width button */
+    /* Contact full-width button - Premium Styling */
     .btn-contact-full {
         width: 100%;
         margin-bottom: 16px;
@@ -494,42 +502,127 @@
 
     .btn-contact-full a {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
         width: 100%;
-        background: linear-gradient(135deg, #1e4794 0%, #2557b0 100%);
+        background: linear-gradient(135deg, #f27a24 0%, #ff6f00 100%);
         color: #fff !important;
         text-decoration: none !important;
-        border-radius: 10px;
-        padding: 18px 24px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(30, 71, 148, 0.3);
+        border-radius: 12px;
+        padding: 14px 28px;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 4px 15px rgba(242, 122, 36, 0.35);
+        position: relative;
+        overflow: hidden;
+        gap: 16px;
+    }
+
+    .btn-contact-full a::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transform: skewX(-20deg);
+        animation: shine-effect 4s infinite;
+    }
+
+    @keyframes shine-effect {
+        0% { left: -100%; }
+        50% { left: 120%; }
+        100% { left: 120%; }
     }
 
     .btn-contact-full a:hover {
-        background: linear-gradient(135deg, #163a7a 0%, #1e4794 100%);
+        background: linear-gradient(135deg, #e65100 0%, #bf360c 100%);
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(30, 71, 148, 0.4);
+        box-shadow: 0 6px 20px rgba(242, 122, 36, 0.45);
         color: #fff !important;
     }
 
-    .btn-contact-full a .fa {
-        font-size: 24px;
-        margin-bottom: 6px;
+    .phone-icon-circle {
+        background: rgba(255, 255, 255, 0.2);
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        max-width: 44px !important;
+        max-height: 44px !important;
+        border-radius: 50% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        align-self: center !important;
+        transition: all 0.3s ease;
+        box-sizing: border-box !important;
+    }
+
+    .btn-contact-full a:hover .phone-icon-circle {
+        background: #fff;
+    }
+
+    .btn-contact-full a:hover .phone-icon-circle i {
         color: #f27a24;
+    }
+
+    .phone-icon-circle i {
+        font-size: 18px;
+        color: #fff;
+        animation: phone-bounce 1.2s infinite alternate;
+    }
+
+    .btn-contact-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .btn-contact-full .title {
         font-size: 16px;
         font-weight: 700;
         letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin: 0;
     }
 
     .btn-contact-full .sub-title {
-        font-size: 13px;
-        opacity: 0.85;
-        margin-top: 3px;
+        font-size: 15px;
+        font-weight: 700;
+        opacity: 0.95;
+        margin-top: 2px;
+        background: rgba(255, 255, 255, 0.18);
+        padding: 2px 8px;
+        border-radius: 4px;
+        letter-spacing: 1px;
+    }
+
+    @keyframes phone-bounce {
+        0% { transform: rotate(-15deg); }
+        100% { transform: rotate(15deg); }
+    }
+
+    @media (max-width: 480px) {
+        .btn-contact-full a {
+            padding: 12px 16px;
+            gap: 12px;
+        }
+        .phone-icon-circle {
+            width: 38px;
+            height: 38px;
+        }
+        .phone-icon-circle i {
+            font-size: 16px;
+        }
+        .btn-contact-full .title {
+            font-size: 14px;
+        }
+        .btn-contact-full .sub-title {
+            font-size: 13px;
+        }
     }
 
     /* Out of stock */
@@ -666,6 +759,26 @@
     .prd-shipping-policy h3 {
         color: #1e4794;
         margin-top: 24px;
+    }
+
+    /* Fix list styling in product information */
+    .prd-shipping-policy ul {
+        list-style-type: disc !important;
+        padding-left: 24px !important;
+        margin: 12px 0 !important;
+    }
+
+    .prd-shipping-policy ol {
+        list-style-type: decimal !important;
+        padding-left: 24px !important;
+        margin: 12px 0 !important;
+    }
+
+    .prd-shipping-policy li {
+        margin-bottom: 8px !important;
+        line-height: 1.6 !important;
+        display: list-item !important;
+        list-style: inherit !important;
     }
 
     /* Responsive */

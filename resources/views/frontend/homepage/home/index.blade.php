@@ -14,7 +14,7 @@
                     $image = $val->image;
                     $description = $val->languages->description;
                 @endphp
-                <div class="uk-width-1-1 uk-width-small-1-2 uk-width-medium-1-3">
+                <div class="uk-width-1-1 uk-width-small-1-2 uk-width-medium-1-3 wow fadeInUp" data-wow-delay="{{ $key * 0.15 }}s">
                     <div class="commit-item">
                         <div class="icon">
                             <img src="{{ $image }}" alt="{{ $name }}">
@@ -49,10 +49,10 @@
     <div class="panel-intro">
         <div class="uk-container uk-container-center">
             <div class="panel-body">
-                <div class="panel-intro__image">
+                <div class="panel-intro__image wow fadeInLeft" data-wow-delay="0.1s">
                     <span class="image img"><img src="{{ $image }}" alt="{{ $name }}"></span>
                 </div>
-                <div class="panel-intro__info">
+                <div class="panel-intro__info wow fadeInRight" data-wow-delay="0.2s">
                     <div class="category-name">{{ $catName }}</div>
                     <div class="name"><span>Chào mừng bạn đến với</span><img src="/vendor/frontend/img/project/tazen.png" alt="TAZEN"></div>
                     <div class="description">{!! $description !!}</div>
@@ -114,12 +114,12 @@
                 $widgetTitle = $solutionWidget->name ?? 'Một cánh cửa mở ra một hành trình ấn tượng';
                 $widgetDesc = $solutionWidget->description[$config['language']] ?? ($solutionWidget->description[1] ?? 'Sứ mệnh tạo nên giá trị bền vững và tinh thần trách nhiệm từ tinh hoa công nghệ Nhật Bản, Thanh nhôm MAXPRO.JP hướng đến những giá trị vượt ra ngoài giới hạn của trải nghiệm vận hành');
             @endphp
-            <div class="solution-header uk-text-center">
+            <div class="solution-header uk-text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h2 class="solution-title">{{ $widgetTitle }}</h2>
                 <p class="solution-subtitle">{!! $widgetDesc !!}</p>
             </div>
             
-            <div class="solution-tabs-wrapper uk-text-center">
+            <div class="solution-tabs-wrapper uk-text-center wow fadeInUp" data-wow-delay="0.2s">
                 <ul class="solution-tabs">
                     @foreach($solutionPosts as $index => $post)
                         @php
@@ -133,7 +133,7 @@
             </div>
         </div>
 
-        <div class="solution-slider-container">
+        <div class="solution-slider-container wow fadeInUp" data-wow-delay="0.3s">
             <div class="solution-slides-wrapper">
                 @foreach($solutionPosts as $index => $post)
                     @php
@@ -189,7 +189,7 @@
     <div class="panel-product-slider">
         <div class="uk-container uk-container-center">
             <div class="product-slider-grid">
-                <div class="product-left-content">
+                <div class="product-left-content wow fadeInLeft" data-wow-delay="0.1s">
                     <span class="tag">{{ $productWidget->description[$config['language']] ?? ($productWidget->description[1] ?? 'Dịch vụ của chúng tôi') }}</span>
                     <h2 class="title">{{ $productCat->languages->name }}</h2>
                     <div class="description">
@@ -206,7 +206,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="product-right-slider">
+                <div class="product-right-slider wow fadeInRight" data-wow-delay="0.2s">
                     <div class="swiper-container product-swiper">
                         <div class="swiper-wrapper">
                             @foreach($productChildren as $idx => $child)
@@ -270,12 +270,12 @@
     @if($projectCat && $projectPosts->isNotEmpty())
     <div class="panel-featured-projects">
         <div class="uk-container uk-container-center">
-            <div class="project-header">
+            <div class="project-header wow fadeInUp" data-wow-delay="0.1s">
                 <span class="tag">{{ $projectWidget->description[$config['language']] ?? ($projectWidget->description[1] ?? 'Tiêu biểu của chúng tôi') }}</span>
                 <h2 class="title">{{ $projectCat->languages->name }}</h2>
             </div>
         </div>
-        <div class="swiper-container project-swiper">
+        <div class="swiper-container project-swiper wow fadeInUp" data-wow-delay="0.2s">
             <div class="swiper-wrapper">
                 @foreach($projectPosts as $post)
                     @php
@@ -340,14 +340,14 @@
     @if(!empty($partnerItems))
     <div class="panel-partner">
         <div class="uk-container uk-container-center">
-            <div class="partner-header uk-flex uk-flex-middle uk-flex-between">
+            <div class="partner-header uk-flex uk-flex-middle uk-flex-between wow fadeInUp" data-wow-delay="0.1s">
                 <h2 class="partner-title">KHÁCH HÀNG CỦA CHÚNG TÔI</h2>
                 <p class="partner-description">
                     Tazen chuyên cung cấp lavabo, vòi sen và thiết bị phòng tắm hiện đại, bền đẹp, phù hợp cho nhà ở, căn hộ, khách sạn và công trình.
                 </p>
             </div>
             
-            <div class="swiper-container partner-swiper">
+            <div class="swiper-container partner-swiper wow fadeInUp" data-wow-delay="0.2s">
                 <div class="swiper-wrapper">
                     @foreach($partnerItems as $item)
                         <div class="swiper-slide partner-slide-item">
@@ -410,13 +410,13 @@
     @if($newsCat && $newsPosts->isNotEmpty() && $videoCat && $videoPosts->isNotEmpty())
     <div class="panel-news-video">
         <div class="uk-container uk-container-center">
-            <div class="section-header uk-text-center">
+            <div class="section-header uk-text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h2 class="section-title">TIN TỨC NỔI BẬT</h2>
             </div>
             
             <div class="uk-grid uk-grid-medium" data-uk-grid-margin>
                 <!-- 1. Featured News (Left Column) -->
-                <div class="uk-width-large-1-3 uk-width-medium-1-2">
+                <div class="uk-width-large-1-3 uk-width-medium-1-2 wow fadeInLeft" data-wow-delay="0.2s">
                     @if($featuredNews)
                         @php
                             $featuredLang = $featuredNews->languages->first();
@@ -437,7 +437,7 @@
                 </div>
 
                 <!-- 2. News List (Middle Column) -->
-                <div class="uk-width-large-1-3 uk-width-medium-1-2">
+                <div class="uk-width-large-1-3 uk-width-medium-1-2 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="news-list-wrapper">
                         @foreach($listNews as $post)
                             @php
@@ -464,7 +464,7 @@
                 </div>
 
                 <!-- 3. Video Column (Right Column) -->
-                <div class="uk-width-large-1-3 uk-width-1-1">
+                <div class="uk-width-large-1-3 uk-width-1-1 wow fadeInRight" data-wow-delay="0.4s">
                     @if($firstVideo)
                         <div class="video-gallery-wrapper">
                             <!-- Main Video Player -->
