@@ -260,25 +260,7 @@
         </div>
     </div>
 
-    <!-- Section 7: Form đăng ký bì thư -->
-    <div class="about-contact-section">
-        <div class="uk-container uk-container-center">
-            <div class="contact-envelope-card" style="background-image: url('/vendor/frontend/img/project/letter.png');">
-                <div class="card-inner uk-text-center">
-                    <p class="card-desc">Đăng ký ngay để nhận nhiều chương trình khuyến mãi đặc biệt từ TAZEN và cơ hội sở hữu nhiều quà tặng sang trọng hấp dẫn</p>
-                    <form action="{{ route('contact.index') }}" method="get" class="newsletter-form uk-form">
-                        <div class="input-group">
-                            <div class="input-wrapper">
-                                <input type="email" placeholder="Nhập vào email của bạn ..." required class="input-email">
-                                <i class="fa fa-envelope-o mail-icon"></i>
-                            </div>
-                            <button type="submit" class="btn-register">Đăng ký ngay</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 </div>
 
