@@ -122,52 +122,11 @@ if(!function_exists('getPromotionPrice')){
 if(!function_exists('getPrice')){
     function getPrice($product = null){
         $result = [
-            'price' => $product->price, 
+            'price' => 0, 
             'priceSale' => 0,
             'percent' => 0, 
-            'html' => ''
+            'html' => '<div class="price mt10"><div class="price-sale">Liên Hệ</div></div>'
         ];
-
-        // Nếu giá = 0 → Liên hệ
-        if($product->price == 0){
-            $result['html'] .= '<div class="price mt10">';
-            $result['html'] .= '   <div class="price-sale">Liên Hệ</div>';
-            $result['html'] .= '</div>';
-            return $result;
-        }
-
-        // Xử lý khuyến mãi
-        if(isset($product->promotions) && isset($product->promotions->discountType)){
-            $result['percent'] = getPercent($product, $product->promotions->discount);
-            if($product->promotions->discountValue > 0){
-                $result['priceSale'] = getPromotionPrice($product->price, $product->promotions->discount);
-            }
-        }
-
-        // Render HTML
-        $result['html'] .= '<div class="price uk-flex uk-flex-middle mt10">';
-        
-        // Giá sale hoặc giá gốc
-        $result['html'] .= '   <div class="price-sale">'
-                                . (($result['priceSale'] > 0) ? convert_price($result['priceSale'], true) : convert_price($result['price'], true))
-                                . '<span class="currency">₫</span></div>';
-
-        // Nếu có giá sale → hiển thị giá gạch + phần trăm GIÁM GIÁ (được tách riêng)
-        if($result['priceSale'] > 0){
-
-            // giá gạch
-            $result['html'] .= '   <div class="price-old">'
-                                    . convert_price($result['price'], true) . '₫'
-                                . '</div>';
-
-            // phần trăm GIẢM (tách hẳn ra → KHÔNG bị gạch ngang)
-            $result['html'] .= '   <div class="percent"><div class="percent-value">-'
-                                    . $result['percent'] . '%'
-                                . '</div></div>';
-        }
-
-        $result['html'] .= '</div>';
-
         return $result;
     }
 }
@@ -175,30 +134,11 @@ if(!function_exists('getPrice')){
 if(!function_exists('getVariantPrice')){
     function getVariantPrice($variant, $variantPromotion){
         $result = [
-            'price' => $variant->price, 
+            'price' => 0, 
             'priceSale' => 0,
             'percent' => 0, 
-            'html' => ''
+            'html' => '<div class="price mt10"><div class="price-sale">Liên Hệ</div></div>'
         ];
-
-        if($variant->price == 0){
-
-            $result['html'] .= '<div class="price mt10">';
-                $result['html'] .= '<div class="price-sale">Liên Hệ</div>';
-            $result['html'] .= '</div>';
-            return $result;
-        }
-
-        if(!is_null($variantPromotion)){
-            $result['percent'] = getPercent($variant, $variantPromotion->discount);
-            $result['priceSale'] = getPromotionPrice($variant->price, $variantPromotion->discount);
-        }
-
-
-        $result['html'] .= '<div class="price-sale">'.(($result['priceSale'] > 0) ? convert_price($result['priceSale'], true) : convert_price($result['price'], true) ).'đ</div>';
-        if($result['priceSale'] !== $result['price']){
-            $result['html'] .= '<div class="price-old">'.convert_price($result['price'], true).'đ <div class="percent"><div class="percent-value">-'.$result['percent'].'%</div></div></div>';
-        }
         return $result;
     }
 }

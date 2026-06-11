@@ -153,14 +153,7 @@
                                 <div class="uk-flex uk-flex-middle">
                                     <span>Giá: </span><span class="price-highlight">{!! $price['html'] !!}</span>
                                 </div>
-                                @if(!empty($product->combo_price) && $product->combo_price > 0)
-                                <div class="uk-flex uk-flex-middle" style="margin-top: 12px;">
-                                    <span style="font-size: 15px; color: #666;">Giá chỉ từ: </span>
-                                    <span style="font-weight: bold; font-size: 17px; margin-left: 15px; color: #f27a24;">
-                                        {{ number_format($product->combo_price, 0, ',', '.') }}₫ / 5 sản phẩm
-                                    </span>
-                                </div>
-                                @endif
+
                             </div>
     
     
@@ -232,48 +225,7 @@
                             </article>
                         </section>
 
-                        <!-- Consultation Form -->
-                        <div class="consultation-form-container uk-margin-large-top">
-                            <div class="consultation-form-box">
-                                <div class="uk-text-center logo-header">
-                                    <img src="{{ $system['homepage_logo'] ?? '' }}" alt="Logo" class="consult-logo" style="max-height: 50px;">
-                                </div>
-                                <h3 class="consult-slogan uk-text-center">
-                                    ĐỂ LẠI SỐ ĐIỆN THOẠI ĐỂ ĐƯỢC CÁC CHUYÊN GIA HÀNG ĐẦU TƯ VẤN CHO BẠN!
-                                </h3>
-                                
-                                <form id="consult-submit-form" class="uk-form consult-form">
-                                    @csrf
-                                    <div class="uk-grid uk-grid-small">
-                                        <div class="uk-width-medium-2-5">
-                                            <label class="form-label">Họ tên (*)</label>
-                                            <input type="text" name="name" required placeholder="Nhập thông tin" class="uk-width-1-1 form-input">
-                                        </div>
-                                        <div class="uk-width-medium-2-5">
-                                            <label class="form-label">Số điện thoại (*)</label>
-                                            <input type="tel" name="phone" required placeholder="Nhập thông tin" class="uk-width-1-1 form-input">
-                                        </div>
-                                        <div class="uk-width-medium-1-5 uk-flex uk-flex-bottom">
-                                            <button type="submit" class="uk-width-1-1 btn-submit-consult">ĐĂNG KÝ</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            
-                            <div class="consult-note uk-text-center uk-margin-top">
-                                <p style="font-size: 14px; line-height: 1.6; color: #555;">Hãy liên hệ ngay với <strong>Tazen Bathroom</strong> để được tư vấn chọn mẫu vòi sen phù hợp với diện tích phòng tắm, nhu cầu sử dụng, ngân sách và phong cách thiết kế của công trình.</p>
-                            </div>
-                            
-                            <div class="company-contact-info uk-text-center uk-margin-large-top">
-                                <h4 class="info-title">THÔNG TIN LIÊN HỆ</h4>
-                                <ul class="uk-list info-list">
-                                    <li>Website: <a href="http://{{ $system['contact_website'] ?? 'tazen.vn' }}" target="_blank">{{ $system['contact_website'] ?? 'tazen.vn' }}</a></li>
-                                    <li>Hotline/Zalo: <a href="tel:{{ $system['contact_hotline'] ?? '0971 764 845' }}">{{ $system['contact_hotline'] ?? '0971 764 845' }}</a></li>
-                                    <li>Email: <a href="mailto:{{ $system['contact_email'] ?? 'info@tazenbathroom.vn' }}">{{ $system['contact_email'] ?? 'info@tazenbathroom.vn' }}</a></li>
-                                    <li>Địa chỉ: {{ $system['contact_address'] ?? 'Số 116 Thái Hà, Phường Trung Liệt, Thành phố Hà Nội' }}</li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
 
                     <!-- Sidebar 1/4 Column -->
@@ -380,7 +332,7 @@
                                                     <a href="{{ $canonical }}" title="{{ $name }}">{{ $name }}</a>
                                                 </h3>
                                                 <div class="card-price" style="font-size: 11px;">
-                                                    Giá: <span class="price-val" style="font-size: 13px;">{{ number_format($valPost->price, 0, ',', '.') }}đ</span>
+                                                    Giá: <span class="price-val" style="font-size: 13px;">Liên hệ</span>
                                                 </div>
                                             </div>
                                             <div class="card-action-right">

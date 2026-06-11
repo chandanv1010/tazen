@@ -190,7 +190,7 @@
                                                                 <a href="{{ $canonical }}" title="{{ $title }}">{{ $title }}</a>
                                                             </h3>
                                                             <div class="card-price">
-                                                                Giá: <span class="price-val">{{ number_format($valPost->price, 0, ',', '.') }}đ</span>
+                                                                Giá: <span class="price-val">Liên hệ</span>
                                                             </div>
                                                         </div>
                                                         <div class="card-action-right">

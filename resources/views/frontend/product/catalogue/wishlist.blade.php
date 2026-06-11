@@ -47,11 +47,6 @@
                                     <div class="price">
                                         {!! str_replace('₫', '₫ / chai', $price['html']) !!}
                                     </div>
-                                    @if(!empty($wishlistProduct->combo_price) && $wishlistProduct->combo_price > 0)
-                                    <div class="combo-price" style="font-size: 12px; color: #666; margin-top: 5px;">
-                                        Giá chỉ từ: <span style="color: #0C4A1A; font-weight: 600;">{{ number_format($wishlistProduct->combo_price, 0, ',', '.') }}₫ / 5 chai</span>
-                                    </div>
-                                    @endif
                                 </div>
                             </div>
                         </li>

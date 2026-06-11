@@ -188,8 +188,8 @@
             font-weight: 900;
             font-family: var(--second-font), sans-serif;
             line-height: 1;
-            color: transparent;
-            -webkit-text-stroke: 1.5px rgba(30, 71, 148, 0.15);
+            color: #1e4794;
+            -webkit-text-stroke: 1.5px #1e4794;
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: inline-block;
 
@@ -248,8 +248,8 @@
                 margin-top: 0.05em;
 
                 .z-blue-part {
-                    fill: none;
-                    stroke: rgba(30, 71, 148, 0.15);
+                    fill: #1e4794;
+                    stroke: #1e4794;
                     stroke-width: 1.5px;
                     vector-effect: non-scaling-stroke;
                     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
