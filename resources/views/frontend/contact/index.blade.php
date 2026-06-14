@@ -56,72 +56,10 @@
                 </div>
             </div>
 
-            {{-- Main contact section: Form + Map --}}
-            <div class="contact-main uk-grid uk-grid-large" data-uk-grid-margin>
-                {{-- Form --}}
-                <div class="uk-width-large-1-2 uk-width-1-1">
-                    <div class="contact-form-box">
-                        <div class="form-header">
-                            <span class="form-tag">— Gửi tin nhắn</span>
-                            <h2 class="form-title">Liên Hệ Với Chúng Tôi</h2>
-                            <p class="form-desc">Đội ngũ chuyên viên Tazen sẽ phản hồi trong vòng 24h làm việc.</p>
-                        </div>
-
-                        <form method="post" action="{{ route('contact.index') }}" class="contact-form uk-form">
-                            @csrf
-
-                            @if ($errors->any())
-                                <div class="form-error-box">
-                                    @foreach ($errors->all() as $error)
-                                        <div>{{ $error }}</div>
-                                    @endforeach
-                                </div>
-                            @endif
-
-                            @if(session('success'))
-                                <div class="form-success-box">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-                            <div class="uk-grid uk-grid-small">
-                                <div class="uk-width-large-1-2 uk-width-1-1">
-                                    <div class="field-group">
-                                        <label class="field-label">Họ và Tên <span class="required">*</span></label>
-                                        <input type="text" name="fullname" class="field-input" 
-                                               placeholder="Nhập họ và tên" value="{{ old('fullname') }}" required>
-                                    </div>
-                                </div>
-                                <div class="uk-width-large-1-2 uk-width-1-1">
-                                    <div class="field-group">
-                                        <label class="field-label">Số điện thoại <span class="required">*</span></label>
-                                        <input type="text" name="phone" class="field-input" 
-                                               placeholder="Nhập số điện thoại" value="{{ old('phone') }}" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="field-group">
-                                <label class="field-label">Email</label>
-                                <input type="email" name="email" class="field-input" 
-                                       placeholder="Nhập địa chỉ email" value="{{ old('email') }}">
-                            </div>
-
-                            <div class="field-group">
-                                <label class="field-label">Lời nhắn</label>
-                                <textarea name="message" class="field-textarea" rows="5"
-                                          placeholder="Nội dung liên hệ...">{{ old('message') }}</textarea>
-                            </div>
-
-                            <button type="submit" class="btn-contact-submit">
-                                <i class="fa fa-paper-plane"></i> Gửi Tin Nhắn
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
+            {{-- Main contact section: Map & Info --}}
+            <div class="contact-main uk-grid uk-flex uk-flex-center" data-uk-grid-margin>
                 {{-- Map + Extra Info --}}
-                <div class="uk-width-large-1-2 uk-width-1-1">
+                <div class="uk-width-large-2-3 uk-width-medium-1-1">
                     <div class="contact-map-box">
                         @php
                             $mapUrl = $system['contact_map'] ?? '';
@@ -141,7 +79,7 @@
                             <iframe 
                                 src="{{ $embedMap }}"
                                 width="100%" 
-                                height="320" 
+                                height="380" 
                                 style="border:0; border-radius: 12px;" 
                                 allowfullscreen="" 
                                 loading="lazy"

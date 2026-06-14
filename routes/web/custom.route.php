@@ -12,6 +12,9 @@ Route::post('/dang-ky.html', [AuthController::class, 'registerAccount'])->name('
 Route::get('/dang-nhap.html', [AuthController::class, 'index'])->name('customer.login');
 Route::post('/dang-nhap.html', [AuthController::class, 'login'])->name('customer.dologin');
 Route::get('/gioi-thieu.html', [\App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('about.index');
+Route::get('/cong-nghe.html', [\App\Http\Controllers\Frontend\TechnologyController::class, 'index'])->name('frontend.technology.index');
+Route::get('/phan-phoi.html', [\App\Http\Controllers\Frontend\DistributionController::class, 'index'])->name('frontend.distribution.index');
+Route::get('/ajax/distribution/getProvinces', [\App\Http\Controllers\Frontend\DistributionController::class, 'getProvinces'])->name('frontend.ajax.distribution.getProvinces');
 // Route::get('/tai-khoan.html', [CustomerController::class, 'profile'])->name('customer.account');
 
 

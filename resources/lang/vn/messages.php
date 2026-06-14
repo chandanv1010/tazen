@@ -583,4 +583,43 @@ return [
     'enter_des_name' => 'Nhập vào tên chính sách',
     'admission_catalogue' =>  'Chọn loại tuyển sinh',
     'scholar' =>  'Chọn học bổng',
+    'distributionArea' => [
+        'index' => [
+            'title' => 'Quản lý khu vực phân phối',
+            'table' => 'Danh sách khu vực phân phối'
+        ],
+        'create' => [
+            'title' => 'Thêm mới khu vực phân phối'
+        ],
+        'edit' => [
+            'title' => 'Cập nhật khu vực phân phối'
+        ],
+        'delete' => [
+            'title' => 'Xóa khu vực phân phối'
+        ],
+    ],
+    'distribution' => [
+        'index' => [
+            'title' => 'Quản lý nhà phân phối',
+            'table' => 'Danh sách nhà phân phối'
+        ],
+        'create' => [
+            'title' => 'Thêm mới nhà phân phối'
+        ],
+        'edit' => [
+            'title' => 'Cập nhật nhà phân phối'
+        ],
+        'delete' => [
+            'title' => 'Xóa nhà phân phối'
+        ],
+    ],
+    'introduce' => [
+        'index' => [
+            'title' => 'Cấu hình Công nghệ',
+            'table' => 'Nội dung trang Công nghệ'
+        ],
+        'create' => [
+            'title' => 'Cài đặt trang Công nghệ'
+        ],
+    ],
 ];

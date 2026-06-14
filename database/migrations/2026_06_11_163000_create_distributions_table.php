@@ -15,12 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone', 20)->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->string('address')->nullable();
-            $table->string('map')->nullable();
-            $table->string('province_id', 10)->nullable();
-            $table->string('district_id', 10)->nullable();
-            $table->tinyInteger('publish')->default(1);
+            $table->string('image')->nullable();
+            $table->text('map')->nullable();
+            $table->unsignedBigInteger('province_id')->nullable(); // Region ID (distribution_areas parent)
+            $table->unsignedBigInteger('district_id')->nullable(); // City/District ID (distribution_areas child)
+            $table->tinyInteger('publish')->default(2);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

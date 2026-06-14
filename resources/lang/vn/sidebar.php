@@ -175,6 +175,32 @@ return [
             ]
         ],
         [
+            'title' => 'QL Phân phối',
+            'icon' => 'fa fa-map-marker',
+            'name' => ['distribution'],
+            'subModule' => [
+                [
+                    'title' => 'QL Nhà phân phối',
+                    'route' => 'distribution/index'
+                ],
+                [
+                    'title' => 'Khu vực phân phối',
+                    'route' => 'distribution/area/index'
+                ],
+            ]
+        ],
+        [
+            'title' => 'Quản lý Giới thiệu',
+            'icon' => 'fa fa-info-circle',
+            'name' => ['introduce'],
+            'subModule' => [
+                [
+                    'title' => 'Quản lý Giới thiệu',
+                    'route' => 'introduce/index'
+                ]
+            ]
+        ],
+        [
             'title' => 'Cấu hình chung',
             'icon' => 'fa fa-file',
             'name' => ['language', 'generate', 'system', 'widget'],
@@ -190,8 +216,7 @@ return [
                 [
                     'title' => 'Quản lý Widget',
                     'route' => 'widget/index'
-                ],
-                
+                ]
             ]
         ]
     ],

@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\V1\WidgetController;
 use App\Http\Controllers\Backend\V1\ReportController;
 use App\Http\Controllers\Backend\V1\ContactController;
 use App\Http\Controllers\Backend\V1\LecturerController;
+use App\Http\Controllers\Backend\V1\DistributionAreaController;
+use App\Http\Controllers\Backend\V1\DistributionController;
 
 
 
@@ -118,6 +120,27 @@ Route::group(['middleware' => ['admin','locale','backend_default_locale']], func
         Route::post('{id}/update', [IntroduceController::class, 'update'])->where(['id' => '[0-9]+'])->name('introduce.update');
         Route::get('{id}/delete', [IntroduceController::class, 'delete'])->where(['id' => '[0-9]+'])->name('introduce.delete');
         Route::delete('{id}/destroy', [IntroduceController::class, 'destroy'])->where(['id' => '[0-9]+'])->name('introduce.destroy');
+    });
+
+    Route::group(['prefix' => 'distribution/area'], function () {
+        Route::get('index', [DistributionAreaController::class, 'index'])->name('distribution.area.index');
+        Route::get('create', [DistributionAreaController::class, 'create'])->name('distribution.area.create');
+        Route::post('store', [DistributionAreaController::class, 'store'])->name('distribution.area.store');
+        Route::get('{id}/edit', [DistributionAreaController::class, 'edit'])->where(['id' => '[0-9]+'])->name('distribution.area.edit');
+        Route::post('{id}/update', [DistributionAreaController::class, 'update'])->where(['id' => '[0-9]+'])->name('distribution.area.update');
+        Route::get('{id}/delete', [DistributionAreaController::class, 'delete'])->where(['id' => '[0-9]+'])->name('distribution.area.delete');
+        Route::delete('{id}/destroy', [DistributionAreaController::class, 'destroy'])->where(['id' => '[0-9]+'])->name('distribution.area.destroy');
+        Route::get('getArea', [DistributionAreaController::class, 'getArea'])->name('ajax.distribution.getArea');
+    });
+
+    Route::group(['prefix' => 'distribution'], function () {
+        Route::get('index', [DistributionController::class, 'index'])->name('distribution.index');
+        Route::get('create', [DistributionController::class, 'create'])->name('distribution.create');
+        Route::post('store', [DistributionController::class, 'store'])->name('distribution.store');
+        Route::get('{id}/edit', [DistributionController::class, 'edit'])->where(['id' => '[0-9]+'])->name('distribution.edit');
+        Route::post('{id}/update', [DistributionController::class, 'update'])->where(['id' => '[0-9]+'])->name('distribution.update');
+        Route::get('{id}/delete', [DistributionController::class, 'delete'])->where(['id' => '[0-9]+'])->name('distribution.delete');
+        Route::delete('{id}/destroy', [DistributionController::class, 'destroy'])->where(['id' => '[0-9]+'])->name('distribution.destroy');
     });
 
 });
