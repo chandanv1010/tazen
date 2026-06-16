@@ -3,7 +3,7 @@
 
     <!-- MAIN HEADER -->
     <div class="header-main-bar">
-        <div class="uk-container uk-container-center">
+        <div class="uk-container uk-container-center header-container">
             <div class="uk-flex uk-flex-middle uk-flex-space-between main-bar-flex">
                 <!-- Logo -->
                 <div class="logo">
