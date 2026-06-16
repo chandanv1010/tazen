@@ -46,7 +46,7 @@
                 <div class="footer-col links-col">
                     <h3 class="col-title">Về chúng tôi</h3>
                     <ul class="col-links uk-list">
-                        <li><a href="{{ write_url('ve-chung-toi') }}">Giới thiệu</a></li>
+                        <li><a href="{{ route('about.index') }}">Giới thiệu</a></li>
                         <li><a href="{{ write_url('san-pham') }}">Sản phẩm</a></li>
                         <li><a href="{{ write_url('du-an-tieu-bieu') }}">Dự án thực tế</a></li>
                         <li><a href="#">Chính sách bảo hành</a></li>

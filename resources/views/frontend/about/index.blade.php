@@ -77,7 +77,7 @@
         $projectPosts = $projectCat ? $projectCat->posts : collect();
     @endphp
 
-    @if($projectCat && $projectPosts->isNotEmpty())
+    @if(false && $projectCat && $projectPosts->isNotEmpty())
     <div class="panel-featured-projects">
         <div class="uk-container uk-container-center">
             <div class="project-header">
@@ -118,7 +118,7 @@
     @endphp
 
     @if($newsCat && $newsPosts->isNotEmpty())
-    <div class="about-news-section" style="background-image: url('/vendor/frontend/img/project/news-bg.png');">
+    <div class="about-news-section">
         <div class="uk-container uk-container-center">
             <div class="uk-grid uk-grid-large" data-uk-grid-margin>
                 <!-- Left text column -->
@@ -168,7 +168,7 @@
         $feedbackPosts = $feedbackCat ? $feedbackCat->posts : collect();
     @endphp
 
-    @if($feedbackCat && $feedbackPosts->isNotEmpty())
+    @if(false && $feedbackCat && $feedbackPosts->isNotEmpty())
     <div class="about-testimonials-section">
         <div class="uk-container uk-container-center">
             <div class="section-header uk-text-center">
@@ -204,6 +204,30 @@
                     @endforeach
                 </div>
                 <div class="swiper-pagination testimonials-pagination"></div>
+            </div>
+        </div>
+    </div>
+    @endif
+
+    <!-- Section 5.5: Video giới thiệu -->
+    @if(isset($system['homepage_about_video_url']) && !empty($system['homepage_about_video_url']))
+    <div class="about-video-section">
+        <div class="uk-container uk-container-center">
+            <div class="section-header uk-text-center">
+                @if(isset($system['homepage_about_video_title']) && !empty($system['homepage_about_video_title']))
+                    <span class="sub-title">— Video</span>
+                    <h2 class="section-title">{{ $system['homepage_about_video_title'] }}</h2>
+                @endif
+                @if(isset($system['homepage_about_video_desc']) && !empty($system['homepage_about_video_desc']))
+                    <p class="section-desc" style="max-width: 700px; margin: 0 auto 30px auto; color: #6b7280; font-size: 14.5px; line-height: 1.65;">
+                        {{ $system['homepage_about_video_desc'] }}
+                    </p>
+                @endif
+            </div>
+            <div class="video-player-wrapper">
+                <div class="video-iframe-container">
+                    {!! $system['homepage_about_video_url'] !!}
+                </div>
             </div>
         </div>
     </div>

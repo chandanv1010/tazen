@@ -166,9 +166,10 @@ ol li {
             display: flex;
             align-items: center;
             gap: 6px;
-            color: #fff;
+            color: #034833;
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
+            transition: color 0.2s ease;
 
             .flag-icon {
                 width: 18px;
@@ -182,6 +183,10 @@ ol li {
                 font-size: 10px;
                 opacity: 0.8;
                 transition: transform 0.2s;
+            }
+
+            &:hover {
+                color: #1e4794;
             }
         }
 
@@ -238,6 +243,60 @@ ol li {
                 transform: rotate(180deg);
             }
         }
+    }
+
+    // HEADER RIGHT UTILITIES
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-left: 15px;
+
+        .header-search-wrapper {
+            .search-toggle {
+                color: #034833;
+                font-size: 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: color 0.2s ease;
+
+                &:hover {
+                    color: #1e4794;
+                }
+            }
+        }
+
+        .header-hotline {
+            .hotline-link {
+                background-color: #f37a20;
+                color: #fff;
+                padding: 6px 14px;
+                border-radius: 4px;
+                font-weight: 700;
+                font-size: 13.5px;
+                text-decoration: none;
+                gap: 6px;
+                display: flex;
+                align-items: center;
+                transition: background-color 0.2s ease, transform 0.2s ease;
+
+                i {
+                    font-size: 12px;
+                }
+
+                &:hover {
+                    background-color: #d6640e;
+                    color: #fff;
+                    transform: translateY(-1px);
+                }
+            }
+        }
+    }
+
+    // OVERRIDE SEARCH THEME COLOR TO TA Z E N BLUE
+    .top-search.bg-theme {
+        background-color: #1e4794 !important;
     }
 
     // MAIN HEADER BAR

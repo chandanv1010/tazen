@@ -1,22 +1,40 @@
 <header class="tazen-header">
-    <!-- TOP BAR -->
-    <div class="header-top-bar">
+    @include('components.top-search')
+
+    <!-- MAIN HEADER -->
+    <div class="header-main-bar">
         <div class="uk-container uk-container-center">
-            <div class="uk-flex uk-flex-middle uk-flex-space-between top-bar-flex">
-                <div class="top-bar-left">
-                    <span class="email-info">
-                        <i class="fa fa-envelope"></i> Email: {{ $system['contact_email'] ?? 'tazen@gmail.com' }}
-                    </span>
-                </div>
-                <div class="top-bar-right uk-flex uk-flex-middle">
-                    <!-- Download Document Button -->
-                    @php
-                        $downloadLink = $system['homepage_download_link'] ?? '#';
-                        $downloadText = $system['homepage_download_text'] ?? 'Tải Tài Liệu';
-                    @endphp
-                    <a href="{{ $downloadLink }}" class="btn-download" target="_blank">
-                        <i class="fa fa-download"></i> {{ $downloadText }}
+            <div class="uk-flex uk-flex-middle uk-flex-space-between main-bar-flex">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="/" title="{{ $system['homepage_brand'] ?? 'Tazen' }}">
+                        <img src="{{ $system['homepage_logo'] ?? '' }}" alt="{{ $system['homepage_brand'] ?? 'Tazen' }}">
                     </a>
+                </div>
+
+                <!-- Navigation Menu Desktop -->
+                <nav class="desktop-navigation uk-visible-large">
+                    <ul class="main-menu uk-flex uk-flex-middle uk-list uk-clearfix">
+                        {!! $menu['main-menu'] ?? '' !!}
+                    </ul>
+                </nav>
+
+                <!-- Header Utilities (Language, Hotline, Search) -->
+                <div class="header-right uk-visible-large uk-flex uk-flex-middle">
+                    <!-- Search Button -->
+                    <div class="header-search-wrapper">
+                        <a href="#" class="search-toggle open-search" title="Tìm kiếm">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Hotline Button -->
+                    <div class="header-hotline">
+                        <a href="tel:{{ $system['contact_hotline'] ?? '' }}" class="hotline-link uk-flex uk-flex-middle">
+                            <i class="fa fa-phone"></i>
+                            <span class="hotline-num">{{ $system['contact_hotline'] ?? '' }}</span>
+                        </a>
+                    </div>
 
                     <!-- Language Switcher -->
                     @if(isset($languages) && count($languages))
@@ -49,27 +67,6 @@
                         </div>
                     @endif
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN HEADER -->
-    <div class="header-main-bar">
-        <div class="uk-container uk-container-center">
-            <div class="uk-flex uk-flex-middle uk-flex-space-between main-bar-flex">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="/" title="{{ $system['homepage_brand'] ?? 'Tazen' }}">
-                        <img src="{{ $system['homepage_logo'] ?? '' }}" alt="{{ $system['homepage_brand'] ?? 'Tazen' }}">
-                    </a>
-                </div>
-
-                <!-- Navigation Menu Desktop -->
-                <nav class="desktop-navigation uk-visible-large">
-                    <ul class="main-menu uk-flex uk-flex-middle uk-list uk-clearfix">
-                        {!! $menu['main-menu'] ?? '' !!}
-                    </ul>
-                </nav>
 
                 <!-- Mobile Menu Button -->
                 <a class="mobile-menu-btn uk-hidden-large" href="#offcanvas" data-uk-offcanvas="{target:'#offcanvas'}">
@@ -97,22 +94,8 @@
 
         <nav class="mobile-menu-nav">
             <ul class="uk-nav uk-nav-offcanvas mobile-menu-list">
-                        {!! $menu['main-menu'] ?? '' !!}
+                {!! $menu['main-menu'] ?? '' !!}
             </ul>
         </nav>
-        
-        <div class="mobile-menu-footer">
-            <div class="mobile-menu-actions">
-                <a href="{{ $downloadLink }}" class="mobile-btn-download" target="_blank">
-                    <i class="fa fa-download"></i> {{ $downloadText }}
-                </a>
-            </div>
-            <div class="mobile-menu-contact">
-                <div class="mobile-contact-item">
-                    <i class="fa fa-envelope"></i>
-                    <a href="mailto:{{ $system['contact_email'] ?? 'tazen@gmail.com' }}">{{ $system['contact_email'] ?? 'tazen@gmail.com' }}</a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

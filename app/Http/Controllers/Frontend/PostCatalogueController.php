@@ -44,6 +44,9 @@ class PostCatalogueController extends FrontendController
     public function index($id, $request, $page = 1)
     {
         $postCatalogue = $this->postCatalogueRepository->getPostCatalogueById($id, $this->language);
+        if ($postCatalogue && $postCatalogue->canonical === 've-chung-toi') {
+            abort(404);
+        }
         $postCatalogue->children = $this->postCatalogueRepository->findByCondition(
             [
                 ['publish', '=', 2],

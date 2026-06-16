@@ -61,7 +61,7 @@
                         name="Xem thêm" 
                         class="button-style-2" 
                         number="{{ $system['contact_hotline'] }}" 
-                        canonical="{{ $canonical }}"
+                        canonical="{{ route('about.index') }}"
                     />
                 </div> 
                 
@@ -267,7 +267,7 @@
         $projectPosts = $projectCat ? $projectCat->posts : collect();
     @endphp
 
-    @if($projectCat && $projectPosts->isNotEmpty())
+    @if(false && $projectCat && $projectPosts->isNotEmpty())
     <div class="panel-featured-projects">
         <div class="uk-container uk-container-center">
             <div class="project-header wow fadeInUp" data-wow-delay="0.1s">

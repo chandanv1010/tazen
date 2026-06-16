@@ -31,7 +31,7 @@
         <div class="art-catalogue-wrapper uk-margin-large-top uk-margin-large-bottom">
             <div class="uk-container uk-container-center">
                 
-                @if($postCatalogue->canonical === 'du-an-tieu-bieu')
+                @if(false && $postCatalogue->canonical === 'du-an-tieu-bieu')
                     {{-- Projects List Style (Matches Homepage) --}}
                     <div class="panel-featured-projects" style="padding: 0;">
                         <div class="uk-grid uk-grid-large uk-grid-width-1-1 uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4" data-uk-grid-margin>
