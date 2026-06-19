@@ -67,6 +67,25 @@ class ProductCatalogueController extends FrontendController
         );
         $products = $this->combineProductValues($products);
         $productCatalogues = recursive($this->productCatalogueRepository->all(['languages']));
+        
+        $subCategories = collect();
+        if ($productCatalogue->canonical == 'san-pham') {
+            $allCatalogues = $this->productCatalogueRepository->all(['languages', 'products']);
+            $subCategories = $allCatalogues->filter(function($cat) use ($productCatalogue) {
+                return $cat->parent_id == $productCatalogue->id && $cat->publish == 2;
+            });
+            foreach ($subCategories as $subCat) {
+                $descendants = $allCatalogues->filter(function($item) use ($subCat) {
+                    return $item->lft >= $subCat->lft && $item->rgt <= $subCat->rgt;
+                });
+                $totalProducts = $descendants->sum(function($cate) {
+                    return $cate->products->count();
+                });
+                $subCat->setAttribute('total_product_count', $totalProducts);
+            }
+            $subCategories = $subCategories->sortBy('order')->values();
+        }
+
         // dd($productCatalogues);
         $widgets = $this->widgetService->getWidget([
             ['keyword' => 'featured-products'],
@@ -90,7 +109,8 @@ class ProductCatalogueController extends FrontendController
             'filters',
             'widgets',
             'schema',
-            'productCatalogues'
+            'productCatalogues',
+            'subCategories'
         ));
     }
 
