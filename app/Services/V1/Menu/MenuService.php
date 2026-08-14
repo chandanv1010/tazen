@@ -107,16 +107,16 @@ class MenuService extends BaseService
         }
     }
 
-    public function saveChildren($request, $languageId, $menu){
+    public function saveChildren($request, $languageId, $parentMenu){
         DB::beginTransaction();
         try{
             $payload = $request->only('menu');
-            if(count($payload['menu']['name'])){
+            if(isset($payload['menu']['name']) && count($payload['menu']['name'])){
                 foreach($payload['menu']['name'] as $key => $val){
                     $menuId = $payload['menu']['id'][$key];
                     $menuArray = [
-                        'menu_catalogue_id' => $menu->menu_catalogue_id,
-                        'parent_id' => $menu->id,
+                        'menu_catalogue_id' => $parentMenu->menu_catalogue_id,
+                        'parent_id' => $parentMenu->id,
                         'order' => (int)$payload['menu']['order'][$key],
                         'user_id' => Auth::id(),
                     ];
@@ -124,8 +124,8 @@ class MenuService extends BaseService
                     if($menuId == 0){
                         $menuSave = $this->menuRepository->create($menuArray); 
                     }else{
-                        $menu = \App\Models\Menu::find($menuId);
-                        if($menu){
+                        $currentMenu = \App\Models\Menu::find($menuId);
+                        if($currentMenu){
                             $menuSave = $this->menuRepository->update($menuId, $menuArray);
                         }else{
                             $menuTrashed = \App\Models\Menu::onlyTrashed()->find($menuId);
@@ -137,7 +137,7 @@ class MenuService extends BaseService
                             }
                         }
                     }
-                    if($menuSave->id > 0){
+                    if($menuSave && $menuSave->id > 0){
                         $menuSave->languages()->detach([$languageId, $menuSave->id]);
                         $payloadLanguage = [
                             'language_id' => $languageId,
@@ -174,8 +174,10 @@ class MenuService extends BaseService
                 }
             }
         }
-        $this->initialize($languageId);
-        $this->nestedset();
+        if($parentId === 0){
+            $this->initialize($languageId);
+            $this->nestedset();
+        }
     }
 
     public function destroy($id){

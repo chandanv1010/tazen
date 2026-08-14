@@ -374,7 +374,7 @@ ol li {
                     }
                 }
 
-                // Red small chevron for dropdown menus via FontAwesome
+                // Red small chevron for top-level dropdown menus via FontAwesome
                 &.children {
                     >a {
                         &::after {
@@ -394,18 +394,22 @@ ol li {
                     }
                 }
 
-                // Dropdown submenu styling
+                // Top-level dropdown menu positioning (Level 2 menu container)
+                > .dropdown-menu {
+                    top: 100%;
+                    left: 0;
+                    border-top: 3px solid #1e4794;
+                    border-radius: 0 0 4px 4px;
+                }
+
+                // Dropdown submenu styling (All levels)
                 .dropdown-menu {
                     display: none;
                     position: absolute;
-                    top: 100%;
-                    left: 0;
                     background: #fff;
-                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                    border-top: 3px solid #1e4794;
-                    border-radius: 0 0 4px 4px;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
                     padding: 8px 0;
-                    min-width: 200px;
+                    min-width: 220px;
                     margin: 0;
                     z-index: 1000;
 
@@ -415,23 +419,67 @@ ol li {
                         margin: 0;
 
                         li {
+                            position: relative;
                             padding: 0;
                             margin: 0;
 
                             a {
-                                display: block;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
                                 padding: 8px 20px;
                                 color: #555;
                                 font-size: 14px;
                                 font-weight: 500;
                                 text-decoration: none;
                                 transition: all 0.2s;
+                                white-space: nowrap;
 
                                 &:hover {
                                     background: #f5f8ff;
                                     color: #1e4794;
-                                    padding-left: 24px;
                                 }
+                            }
+
+                            // Level 2+ items with children (Level 3+ submenus)
+                            &.children {
+                                > a {
+                                    &::after {
+                                        content: "\f0da"; // FontAwesome caret-right
+                                        font-family: FontAwesome;
+                                        font-size: 11px;
+                                        color: #888;
+                                        margin-left: 12px;
+                                        transition: transform 0.2s, color 0.2s;
+                                    }
+                                }
+
+                                &:hover {
+                                    > a {
+                                        background: #f5f8ff;
+                                        color: #1e4794;
+
+                                        &::after {
+                                            color: #1e4794;
+                                            transform: translateX(3px);
+                                        }
+                                    }
+
+                                    // Display Level 3+ submenus to the right side on hover
+                                    > .dropdown-menu {
+                                        display: block;
+                                    }
+                                }
+                            }
+
+                            // Submenu level 3+ dropdown menu positioning (flyout to the right)
+                            > .dropdown-menu {
+                                top: 0;
+                                left: 100%;
+                                border-top: none;
+                                border-left: 3px solid #1e4794;
+                                border-radius: 0 4px 4px 4px;
+                                margin-top: -8px; // align top with parent item
                             }
                         }
                     }
@@ -442,7 +490,8 @@ ol li {
                         color: #1e4794;
                     }
 
-                    .dropdown-menu {
+                    // Only show direct child dropdown-menu on top-level hover
+                    > .dropdown-menu {
                         display: block;
                     }
                 }
